@@ -747,6 +747,7 @@ function refreshUser(){if(cur&&cur.real&&!$("product").hidden)updateActions(cur)
 function updateActions(p){
   const el=$("pActions");if(!el)return;const f=favs.has(p.dbId),l=items.some(i=>i.pid===p.dbId),c=cmp.includes(p.id);
   el.innerHTML=`<button class="btn" data-act="fav" aria-pressed="${f}">${f?"♥ Nos favoritos":"♡ Favoritar"}</button><button class="btn" data-act="list" aria-pressed="${l}">${l?"✓ Na lista de compras":"+ Lista de compras"}</button><button class="btn" data-act="cmp" aria-pressed="${c}">${c?"Remover da comparação":"Comparar"}</button>`;
+  el.insertAdjacentHTML("beforeend",'<button class="btn" data-act="price">Informar preço</button>');
 }
 async function doAct(act,p){
   if(act==="fav"){

@@ -4,7 +4,7 @@ import { writeFileSync } from 'node:fs';
 const PAGE = 'https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas';
 const HEAD = { 'User-Agent': 'Mozilla/5.0 (compatible; PrecoMapaBot/1.0; +https://precomapa.vercel.app)' };
 const GRAVAR = process.env.GRAVAR === 'sim';
-const SB = (process.env.SUPABASE_URL || '').replace(/\/$/, '');
+const SB = (() => { try { return new URL(process.env.SUPABASE_URL || '').origin; } catch { return ''; } })();
 const KEY = process.env.SUPABASE_SERVICE_KEY || '';
 const SOURCE_ID = 1;
 const QTD = Number(process.env.ULTIMAS || 2);

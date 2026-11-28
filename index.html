@@ -750,6 +750,7 @@ function updateActions(p){
   el.insertAdjacentHTML("beforeend",'<button class="btn" data-act="price">Informar preço</button>');
 }
 async function doAct(act,p){
+  if(act==="price"){toast("Em breve: informar preço.");return}
   if(act==="fav"){
     if(needLogin("Entre na sua conta para salvar favoritos."))return;
     const on=favs.has(p.dbId),r=on?await sb.from("favorites").delete().eq("product_id",p.dbId):await sb.from("favorites").insert({user_id:me.id,product_id:p.dbId});
